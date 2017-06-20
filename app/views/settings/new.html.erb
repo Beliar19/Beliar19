@@ -1,0 +1,68 @@
+<h2>New Settings</h2>
+
+<% if @setting.errors.any? %>
+	<% @setting.errors.full_messages.each do |msg| %>
+		<!-- <div class="alert alert-danger"><%= msg %></div> -->
+		<p hidden><%= flash[:alert] = msg %></p>
+		<%if flash.present?%>
+			<div class="row">
+			    <div class="col-sm-12 col-md-6 col-md-offset-3" style="padding: 0 0">
+			        <%= render partial: "shared/flash_messages_fix", flash: flash %>
+			    </div>
+			</div>
+		<%end%>      	
+	<% end %>
+<% end %>
+
+<!-- 
+<% if @setting.errors.any? %>
+	<% @setting.errors.full_messages.each do |msg| %>
+		<div class="alert alert-danger"><%= msg %></div>      	
+	<% end %>
+<% end %>
+
+ -->
+<%= form_for(@setting) do |f| %>
+	<%= f.label :country %> 
+	<div class="field">         	 
+    	<%= f.select :country, options_for_country, {}, {:prompt => 'Select One Country',  autofocus: 'true', class: 'form-control'}  %>
+	</div>  
+	<div class="field">
+		<%= f.label :language %>        	 
+    	<%= f.select :language, options_for_language, {}, {:prompt => 'Select One Country',  autofocus: 'true', class: 'form-control'}  %>
+	</div> 
+	<div class="field">
+		<%= f.submit "Guardar", class:"btn btn-sm btn-danger white pull-right", style:"margin-top: 15px;" %>
+	</div>
+<% end %>
+<div class="row">
+	<div class="col-xs-12">
+	  	<label for="name">Personal Information</label>
+	  	<p>Edit personal information associated with your Rotten Tomatoes account.</p>
+	  	<hr> 
+	  	<label for="name">Change or Confirm Email Address</label>
+	  	<p>Change or confirm your email address for your Rotten Tomatoes account.</p>
+	  	<hr>
+	  	<label for="name">Profile Display Name</label>
+	  	<p>Edit your public profile display name.</p>
+	  	<hr>
+	  	<label for="name">Profile Details</label>
+	  	<p>Edit public profile information about yourself.</p>
+	  	<hr> 
+	  	<label for="name">Email Preferences</label>
+	  	<p>Modify your email subscription settings.</p>
+	  	<hr>
+	  	<label for="name">Password</label>
+	  	<p>Change the password for your Rotten Tomatoes account.</p>
+	  	<hr>
+	  	<label for="name">Privacy Settings</label>
+	  	<p>Manage your profile visibility and share settings.</p>
+	  	<hr>
+	  	<label for="name">Change Country</label>
+	  	<p>Manage your localization setting.</p>
+	  	<hr>
+	  	<label for="name">Delete Account</label>
+	  	<p>Terminate your Rotten Tomatoes account and disconnect from any attached social networks.</p>
+	  	<hr>
+	</div>
+</div>
